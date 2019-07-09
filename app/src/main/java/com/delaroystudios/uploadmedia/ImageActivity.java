@@ -371,20 +371,22 @@ public class ImageActivity extends AppCompatActivity implements View.OnClickList
             RequestBody requestBody = RequestBody.create(MediaType.parse("*/*"), file);
             map.put("file\"; filename=\"" + file.getName() + "\"", requestBody);
             ApiConfig getResponse = AppConfig.getRetrofit().create(ApiConfig.class);
-            Call<ServerResponse> call = getResponse.upload("token", map);
+            Call<ServerResponse> call = getResponse.upload(map);
             call.enqueue(new Callback<ServerResponse>() {
                 @Override
                 public void onResponse(Call<ServerResponse> call, Response<ServerResponse> response) {
+                    Toast.makeText(getApplicationContext(), response.code() + " is showing", Toast.LENGTH_SHORT).show();
+
                     if (response.isSuccessful()){
                         if (response.body() != null){
                             hidepDialog();
                             ServerResponse serverResponse = response.body();
-                            Toast.makeText(getApplicationContext(), serverResponse.getMessage(), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getApplicationContext(), serverResponse.getMessage().getEn() + "", Toast.LENGTH_SHORT).show();
 
                         }
                     }else {
                         hidepDialog();
-                        Toast.makeText(getApplicationContext(), "problem uploading image", Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(getApplicationContext(), "problem uploading image", Toast.LENGTH_SHORT).show();
                     }
                 }
 

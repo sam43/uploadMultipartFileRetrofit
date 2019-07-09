@@ -5,22 +5,32 @@ package com.delaroystudios.uploadmedia.networking;
  */
 
 import com.google.gson.annotations.SerializedName;
+import com.google.gson.annotations.Expose;
 
+import java.util.List;
 
 public class ServerResponse {
 
-    // variable name should be same as in the json response from php
-    @SerializedName("success")
-    boolean success;
     @SerializedName("message")
-    String message;
+    @Expose
+    private Message message;
+    @SerializedName("data")
+    @Expose
+    private Data data;
 
-    public String getMessage() {
+    public Message getMessage() {
         return message;
     }
 
-    public boolean getSuccess() {
-        return success;
+    public void setMessage(Message message) {
+        this.message = message;
     }
 
+    public Data getData() {
+        return data;
+    }
+
+    public void setData(Data data) {
+        this.data = data;
+    }
 }

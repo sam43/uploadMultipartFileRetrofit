@@ -86,7 +86,7 @@ public class VideoActivity extends AppCompatActivity {
             RequestBody requestBody = RequestBody.create(MediaType.parse("*/*"), file);
             map.put("file\"; filename=\"" + file.getName() + "\"", requestBody);
             ApiConfig getResponse = AppConfig.getRetrofit().create(ApiConfig.class);
-            Call<ServerResponse> call = getResponse.upload("token", map);
+            Call<ServerResponse> call = getResponse.upload(map);
             call.enqueue(new Callback<ServerResponse>() {
                 @Override
                 public void onResponse(Call<ServerResponse> call, Response<ServerResponse> response) {
@@ -94,7 +94,7 @@ public class VideoActivity extends AppCompatActivity {
                         if (response.body() != null){
                             showpDialog();
                             ServerResponse serverResponse = response.body();
-                            Toast.makeText(getApplicationContext(), serverResponse.getMessage(), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getApplicationContext(), serverResponse.getMessage() + "", Toast.LENGTH_SHORT).show();
 
                         }
                     }else {

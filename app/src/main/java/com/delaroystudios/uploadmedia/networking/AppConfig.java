@@ -9,7 +9,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class AppConfig {
 
-    public static String BASE_URL = "http://unitypuzzlegame.com/";
+    //public static String BASE_URL = "http://unitypuzzlegame.com/";
+    public static String BASE_URL = "http://test.prefeex.com/api/";
 
     public static Retrofit getRetrofit() {
 
